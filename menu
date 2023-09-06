@@ -1,0 +1,30 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. MenuSystem.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 CHOICE PIC X.
+       
+       SCREEN SECTION.
+       01 BLANK-LINE PIC X(80) VALUE SPACES.
+       01 MENU-LINE PIC X(80) VALUE SPACES.
+
+       PROCEDURE DIVISION.
+           DISPLAY "Simple Menu System in COBOL"
+           PERFORM UNTIL CHOICE = 'X' OR CHOICE = 'x'
+               DISPLAY BLANK-LINE
+               DISPLAY MENU-LINE
+               ACCEPT CHOICE
+               EVALUATE CHOICE
+                   WHEN 'A' OR 'a'
+                       DISPLAY "Option 1" UPON MENU-LINE
+                   WHEN 'B' OR 'b'
+                       DISPLAY "Option 2" UPON MENU-LINE
+                   WHEN 'X' OR 'x'
+                       CONTINUE
+                   WHEN OTHER
+                       DISPLAY "Invalid choice. Please try again."
+               END-EVALUATE
+           END-PERFORM
+           DISPLAY "Exiting the program."
+           STOP RUN.
+

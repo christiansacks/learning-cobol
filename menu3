@@ -1,0 +1,32 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. MenuSystem.
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 CHOICE PIC X.
+
+PROCEDURE DIVISION.
+    DISPLAY "Simple Menu System in COBOL"
+    DISPLAY "a. List current directory"
+    DISPLAY "b. Send a notification to ntfy.sh"
+    DISPLAY "x. Exit"
+    
+    ACCEPT CHOICE
+    PERFORM PROCESS-CHOICE
+    DISPLAY "Press Enter to continue..."
+    ACCEPT CHOICE
+    STOP RUN.
+
+PROCESS-CHOICE.
+    EVALUATE TRUE
+        WHEN CHOICE = 'A' OR CHOICE = 'a'
+            DISPLAY "Listing current directory..."
+            DISPLAY ""
+            CALL "SYSTEM" USING "ls -l"
+        WHEN CHOICE = 'B' OR CHOICE = 'b'
+            DISPLAY "Sending a notification to ntfy.sh..."
+            CALL "SYSTEM" USING "curl -u 'ml:Winda^94h1977' -d 'This was sent from COBOL!' https://ntfy.erb.pw/ml-cobol"
+        WHEN CHOICE = 'X' OR CHOICE = 'x'
+            DISPLAY "Exiting the program."
+        WHEN OTHER
+            DISPLAY "Invalid choice. Please try again."
+    END-EVALUATE.

@@ -1,0 +1,15 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. PrintAtPosition.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 SCREEN-DATA.
+          05 LINE1 PIC X(80) VALUE SPACES.
+          05 LINE2 PIC X(80) VALUE SPACES.
+
+       PROCEDURE DIVISION.
+           MOVE "This text is at position 10" TO LINE1(10:30)
+           MOVE "This text is at position 40" TO LINE2(40:30)
+           DISPLAY LINE1
+           DISPLAY LINE2
+           STOP RUN.
+
